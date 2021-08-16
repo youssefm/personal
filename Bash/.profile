@@ -7,8 +7,6 @@ PS1="\[$yellow\]\w\[$reset\]\$(__git_ps1 \" \[$blue\](%s)\[$reset\]\") \[$yellow
 
 cd /repos
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
 
@@ -69,3 +67,4 @@ alias up6='pushd ../../../../../..'
 alias up7='pushd ../../../../../../..'
 alias up8='pushd ../../../../../../../..'
 alias up9='pushd ../../../../../../../../..'
+
