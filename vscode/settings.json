@@ -1,44 +1,68 @@
 {
-  "editor.minimap.enabled": false,
-  "workbench.colorTheme": "Atom One Dark",
-  "workbench.editor.enablePreviewFromQuickOpen": false,
-  "explorer.confirmDelete": false,
-  "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true,
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
-  "files.autoSave": "off",
-  "editor.fontSize": 14,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
   "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode",
     "editor.tabSize": 2
   },
   "[typescript]": {
-    "editor.tabSize": 2
-  },
-  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
   "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
-  "[sass]": {
-    "editor.tabSize": 2
-  },
-  "workbench.tree.indent": 24,
   "editor.autoClosingBrackets": "never",
+  "editor.autoClosingDelete": "never",
+  "editor.autoClosingOvertype": "never",
   "editor.autoClosingQuotes": "never",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.alwaysShowStatus": true,
-  "eslint.format.enable": true,
-  "vsicons.dontShowNewVersionMessage": true,
-  "files.insertFinalNewline": true,
-  "python.showStartPage": false,
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+  "editor.fontFamily": "'Source Code Pro', monospace",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/node_modules": true
   },
-  "python.languageServer": "Pylance",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "html.autoClosingTags": false,
+  "javascript.autoClosingTags": false,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "python.formatting.provider": "black",
+  "svelte.plugin.html.tagComplete.enable": false,
+  "telemetry.telemetryLevel": "off",
+  "typescript.autoClosingTags": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.colorTheme": "Atom One Dark",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "workbench.tree.indent": 24
 }
