@@ -59,7 +59,6 @@
     "*.ipynb": "jupyter-notebook"
   },
   "workbench.tree.indent": 24,
-  "gitlens.hovers.currentLine.over": "line",
   "workbench.editor.closeEmptyGroups": false,
   "workbench.editor.revealIfOpen": true
 }
