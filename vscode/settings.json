@@ -15,10 +15,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
-  "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode",
-    "editor.tabSize": 2
-  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -41,8 +37,7 @@
   "explorer.confirmDragAndDrop": false,
   "files.eol": "\n",
   "files.exclude": {
-    "**/__pycache__": true,
-    "**/node_modules": true
+    "**/__pycache__": true
   },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -56,7 +51,6 @@
     "jupyter-notebook": "left"
   },
   "python.formatting.provider": "black",
-  "svelte.plugin.html.tagComplete.enable": false,
   "telemetry.telemetryLevel": "off",
   "typescript.autoClosingTags": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -64,5 +58,8 @@
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
-  "workbench.tree.indent": 24
+  "workbench.tree.indent": 24,
+  "gitlens.hovers.currentLine.over": "line",
+  "workbench.editor.closeEmptyGroups": false,
+  "workbench.editor.revealIfOpen": true
 }
