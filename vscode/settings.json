@@ -37,7 +37,8 @@
   "explorer.confirmDragAndDrop": false,
   "files.eol": "\n",
   "files.exclude": {
-    "**/__pycache__": true
+    "**/__pycache__": true,
+    "**/node_modules": true
   },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
