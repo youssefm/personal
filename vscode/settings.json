@@ -45,6 +45,7 @@
   "files.trimTrailingWhitespace": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
+  "git.inputValidationSubjectLength": null,
   "html.autoClosingTags": false,
   "javascript.autoClosingTags": false,
   "notebook.cellToolbarLocation": {
@@ -56,10 +57,11 @@
   "typescript.autoClosingTags": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.colorTheme": "Atom One Dark",
+  "workbench.editor.closeEmptyGroups": false,
+  "workbench.editor.closeOnFileDelete": true,
+  "workbench.editor.revealIfOpen": true,
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
-  "workbench.tree.indent": 24,
-  "workbench.editor.closeEmptyGroups": false,
-  "workbench.editor.revealIfOpen": true
+  "workbench.tree.indent": 24
 }
