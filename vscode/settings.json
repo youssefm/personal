@@ -101,9 +101,7 @@
     "editor.selectionHighlightBorder": "#17e5e600",
     "editor.stackFrameHighlightBackground": "#c6902625",
     "editor.wordHighlightBackground": "#17e5e600",
-    "editor.wordHighlightBorder": "#17e5e699",
     "editor.wordHighlightStrongBackground": "#17e5e600",
-    "editor.wordHighlightStrongBorder": "#17e5e666",
     "editorBracketHighlight.foreground1": "#79b8ff",
     "editorBracketHighlight.foreground2": "#ffab70",
     "editorBracketHighlight.foreground3": "#b392f0",
@@ -276,7 +274,7 @@
         }
       },
       {
-        "scope": "storage.type, entity.name.tag.css",
+        "scope": "storage.type, entity.name.tag.css, variable.language.this.ts",
         "settings": {
           "foreground": "#c081c0",
           "fontStyle": ""
