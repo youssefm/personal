@@ -22,6 +22,7 @@
 * Hire people that are at least at the average level of your coworkers
 * Don’t treat mocks or designs as the absolute truth, there is always room for negotiation
 * A decision that is correct in one context might be wrong in another
+* Names are important (https://journal.stuffwithstuff.com/2016/06/16/long-names-are-long/)
 
 * Roles of a Tech lead
 	* Assigning the right projects to the right people
