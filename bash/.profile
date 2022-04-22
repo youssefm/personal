@@ -56,6 +56,9 @@ function checkin()
 alias scorch='git clean -xdf'
 alias count='git shortlog -sn'
 alias rebase='git rebase'
+alias stash='git stash -u'
+alias pop='git stash pop'
+alias push='checkin'
 
 alias up='pushd ..'
 alias up1='pushd ..'
