@@ -24,6 +24,7 @@
 * A decision that is correct in one context might be wrong in another
 * Names are important (https://journal.stuffwithstuff.com/2016/06/16/long-names-are-long/)
 * Threading is for working in parallel, async is for waiting in parallel
+* A tax on developers is the worst kind of tax - it slows down the implementation of automated solutions
 
 * Roles of a Tech lead
 	* Assigning the right projects to the right people
