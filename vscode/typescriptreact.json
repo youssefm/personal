@@ -18,10 +18,22 @@
       "",
       "export default $TM_FILENAME_BASE;"
     ],
-    "description": "A react function component"
+    "description": "A react function component with arrow functions"
+  },
+  "Classic Function Component": {
+    "prefix": "cfc",
+    "body": [
+      "interface Props {",
+      "}",
+      "",
+      "export default function $TM_FILENAME_BASE({}: Props) {",
+      "\treturn null;",
+      "};"
+    ],
+    "description": "A classic react function component"
   },
   "Console Log": {
-    "prefix": "clog",
+    "prefix": "log",
     "body": ["console.log($0);"],
     "description": "A console.log statement"
   }
