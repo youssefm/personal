@@ -1,4 +1,7 @@
 {
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -28,9 +31,12 @@
   "editor.autoClosingOvertype": "never",
   "editor.autoClosingQuotes": "never",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
   },
+  "editor.fontFamily": "'Source Code Pro', monospace",
   "editor.fontLigatures": "'ccmp' off",
+  "editor.fontSize": 14,
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.tokenColorCustomizations": {
@@ -74,6 +80,20 @@
         "settings": {
           "fontStyle": "",
           "foreground": "#CDCDCD"
+        }
+      },
+      {
+        "scope": "invalid.illegal",
+        "settings": {
+          "fontStyle": "",
+          "foreground": "#CDCDCD"
+        }
+      },
+      {
+        // Keep the last character of strings green as you type it in
+        "scope": "invalid.illegal.newline.ts",
+        "settings": {
+          "foreground": "#99CC99"
         }
       },
       {
@@ -1592,7 +1612,10 @@
   "files.eol": "\n",
   "files.exclude": {
     "**/__pycache__": true,
-    "**/node_modules": true
+    "**/.pytest_cache": true,
+    "**/.venv": true,
+    "**/node_modules": true,
+    "**/venv": true
   },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -1606,9 +1629,28 @@
     "default": "right",
     "jupyter-notebook": "left"
   },
+  "prettier.documentSelectors": ["**/*.astro"],
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.indexing": true,
+  "python.analysis.packageIndexDepths": [
+    {
+      "depth": 100,
+      "includeAllSymbols": true,
+      "name": ""
+    }
+  ],
   "python.formatting.provider": "black",
+  "security.workspace.trust.untrustedFiles": "open",
+  "svg.preview.mode": "svg",
   "telemetry.telemetryLevel": "off",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font'",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.scrollback": 10000,
   "typescript.autoClosingTags": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.colorCustomizations": {
@@ -1799,19 +1841,10 @@
     "*.ipynb": "jupyter-notebook"
   },
   "workbench.tree.indent": 24,
-  "security.workspace.trust.untrustedFiles": "open",
-  "svg.preview.mode": "svg",
-  "terminal.integrated.defaultProfile.osx": "bash",
-  "editor.fontFamily": "'Source Code Pro', monospace",
-  "editor.fontSize": 14,
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.enableMultiLinePasteWarning": false,
-  "terminal.integrated.scrollback": 10000,
-  "terminal.integrated.copyOnSelection": true,
-  "npm.keybindingsChangedWarningShown": true,
-  "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font'",
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "zenMode.restore": false,
+  "zenMode.hideActivityBar": false,
   "zenMode.hideTabs": false,
-  "zenMode.hideActivityBar": false
+  "zenMode.restore": false,
+  "search.exclude": {
+    "**/package-lock.json": true
+  }
 }
