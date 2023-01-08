@@ -7,30 +7,18 @@
   "Function Component": {
     "prefix": "fc",
     "body": [
-      "import { FC } from \"react\";",
+      "import { ReactElement } from \"react\";",
       "",
-      "interface Props {",
+      "type Props = {",
+      "\t$0",
       "}",
       "",
-      "const $TM_FILENAME_BASE: FC<Props> = ({}) => {",
-      "\treturn null;",
-      "};",
-      "",
-      "export default $TM_FILENAME_BASE;"
-    ],
-    "description": "A react function component with arrow functions"
-  },
-  "Classic Function Component": {
-    "prefix": "cfc",
-    "body": [
-      "interface Props {",
-      "}",
-      "",
-      "export default function $TM_FILENAME_BASE({}: Props) {",
+      "export default function ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}(props: Props): ReactElement {",
+      "\tconst {} = props;",
       "\treturn null;",
       "};"
     ],
-    "description": "A classic react function component"
+    "description": "A React function component"
   },
   "Console Log": {
     "prefix": "log",
