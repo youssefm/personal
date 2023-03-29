@@ -65,6 +65,14 @@ function checkin()
   local branch=$(git rev-parse --abbrev-ref HEAD);
   git push origin $branch;
 }
+function merged()
+{
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  git checkout main
+  git fetch origin
+  git rebase origin/main
+  git branch -D $branch
+}
 
 alias scorch='git clean -xdf'
 alias count='git shortlog -sn'
@@ -73,7 +81,12 @@ alias stash='git stash -u'
 alias pop='git stash pop'
 alias push='checkin'
 
-alias up='pushd ..'
+alias up='docker compose up'
+alias down='docker compose down'
+function dockersh() { docker compose exec -it $1 /bin/sh }
+
+alias k=kubectl
+
 alias up1='pushd ..'
 alias up2='pushd ../..'
 alias up3='pushd ../../..'
