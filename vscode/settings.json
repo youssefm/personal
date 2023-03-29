@@ -59,6 +59,12 @@
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "git.inputValidationSubjectLength": null,
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": false,
+    "plaintext": true,
+    "yaml": false
+  },
   "html.autoClosingTags": false,
   "javascript.autoClosingTags": false,
   "notebook.cellToolbarLocation": {
@@ -88,6 +94,7 @@
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font'",
   "terminal.integrated.fontSize": 14,
+  "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.scrollback": 10000,
   "thunder-client.requestLayout": "Top/Bottom",
   "typescript.autoClosingTags": false,
@@ -102,15 +109,5 @@
   "workbench.tree.indent": 24,
   "zenMode.hideActivityBar": false,
   "zenMode.hideTabs": false,
-  "zenMode.restore": false,
-  "terminal.integrated.gpuAcceleration": "off",
-  "gitlens.advanced.messages": {
-    "suppressFileNotUnderSourceControlWarning": true
-  },
-  "github.copilot.enable": {
-    "*": true,
-    "yaml": false,
-    "plaintext": true,
-    "markdown": false
-  }
+  "zenMode.restore": false
 }
