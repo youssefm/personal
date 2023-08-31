@@ -49,7 +49,6 @@
   "editor.minimap.enabled": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "files.autoSave": "afterDelay",
   "files.eol": "\n",
   "files.exclude": {
     "**/.pytest_cache": true,
@@ -75,9 +74,7 @@
     "default": "right",
     "jupyter-notebook": "left"
   },
-  "prettier.documentSelectors": [
-    "**/*.astro"
-  ],
+  "prettier.documentSelectors": ["**/*.astro"],
   "python.analysis.autoImportCompletions": true,
   "python.analysis.autoImportUserSymbols": true,
   "python.analysis.indexing": true,
