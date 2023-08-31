@@ -19,6 +19,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -46,6 +49,7 @@
   "editor.minimap.enabled": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
+  "files.autoSave": "afterDelay",
   "files.eol": "\n",
   "files.exclude": {
     "**/.pytest_cache": true,
@@ -71,7 +75,9 @@
     "default": "right",
     "jupyter-notebook": "left"
   },
-  "prettier.documentSelectors": ["**/*.astro"],
+  "prettier.documentSelectors": [
+    "**/*.astro"
+  ],
   "python.analysis.autoImportCompletions": true,
   "python.analysis.autoImportUserSymbols": true,
   "python.analysis.indexing": true,
@@ -82,7 +88,6 @@
       "name": ""
     }
   ],
-  "python.formatting.provider": "black",
   "search.exclude": {
     "**/package-lock.json": true
   },
