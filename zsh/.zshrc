@@ -10,10 +10,12 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="/home/yms/.local/bin:$PATH"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Get home and end keys to work
+bindkey "\033[H" beginning-of-line
+bindkey "\033[F" end-of-line
 
 # case-insensitive completion
 autoload -Uz compinit && compinit
@@ -43,6 +45,11 @@ alias go='git checkout'
 alias main='git checkout main'
 alias master='git checkout master'
 alias branches='git branch --list'
+alias b1='git checkout users/ymoussaoui/b1'
+alias b2='git checkout users/ymoussaoui/b2'
+alias b3='git checkout users/ymoussaoui/b3'
+alias b4='git checkout users/ymoussaoui/b4'
+function d() { git branch -D users/ymoussaoui/$* }
 
 function sync()
 {
@@ -56,14 +63,14 @@ function upsync()
   git fetch upstream;
   git rebase upstream/$branch;
 }
-alias branch='git checkout -b'
-function commit() { git add -A :/ && git commit -m "$*"; }
+function branch() { git checkout -b users/ymoussaoui/$* }
+function commit() { git add -A :/ && git commit -m "$*" }
 alias amend='git add -A :/ && git commit --amend -C HEAD'
-function merge() { git merge $* && git branch -d $*; }
+function merge() { git merge $* && git branch -d $* }
 function checkin()
 {
-  local branch=$(git rev-parse --abbrev-ref HEAD);
-  git push origin $branch;
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  git push origin $branch
 }
 function merged()
 {
@@ -80,10 +87,13 @@ alias rebase='git rebase'
 alias stash='git stash -u'
 alias pop='git stash pop'
 alias push='checkin'
+alias jj='pbpaste | jsonpp | pbcopy'
 
 alias up='docker compose up'
 alias down='docker compose down'
-function dockersh() { docker compose exec -it $1 /bin/sh }
+function dsh() { docker exec -it $1 bash }
+function csh() { docker compose exec -it $1 bash }
+function ksh() { kubectl exec -it $1 -- bash }
 
 alias k=kubectl
 
