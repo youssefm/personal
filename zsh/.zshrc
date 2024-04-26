@@ -53,15 +53,15 @@ function d() { git branch -D users/ymoussaoui/$* }
 
 function sync()
 {
-  local branch=$(git rev-parse --abbrev-ref HEAD);
-  git fetch origin;
-  git rebase origin/$branch;
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  git fetch origin $branch
+  git rebase origin/$branch
 }
 function upsync()
 {
-  local branch=$(git rev-parse --abbrev-ref HEAD);
-  git fetch upstream;
-  git rebase upstream/$branch;
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  git fetch upstream $branch
+  git rebase upstream/$branch
 }
 function branch() { git checkout -b users/ymoussaoui/$* }
 function commit() { git add -A :/ && git commit -m "$*" }
