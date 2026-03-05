@@ -1,6 +1,6 @@
 ---
 name: slidev
-description: Create or edit developer presentations using Slidev with the Nord theme. Use when user asks to make, update, fix, or modify a presentation, slide deck, talk, or wants slides for a topic. Also use when editing any slides.md file or working in ~/Documents/presentations/. Triggers on 'presentation', 'slides', 'slide deck', 'talk', 'slidev', 'slides.md', 'fix slide', 'update slide', 'edit slide', 'add slide'.
+description: Create or edit developer presentations using Slidev with the Nord theme. Use when user asks to make, update, fix, or modify a presentation, slide deck, talk, or wants slides for a topic. Also use when editing any slides.md file or working in ~/presentations/. Triggers on 'presentation', 'slides', 'slide deck', 'talk', 'slidev', 'slides.md', 'fix slide', 'update slide', 'edit slide', 'add slide'.
 ---
 
 # Slidev Presentation Skill
@@ -13,9 +13,9 @@ Slidev is a Markdown-based slide maker for developers. You write slides in a sin
 
 ## Quick Start — Scaffold a New Presentation
 
-All presentations live in `~/Documents/presentations/`. When the user asks for a presentation, create a new project directory and scaffold it:
+All presentations live in `~/presentations/`. When the user asks for a presentation, create a new project directory and scaffold it:
 
-1. Create the directory at `~/Documents/presentations/<kebab-case-name>/`
+1. Create the directory at `~/presentations/<kebab-case-name>/`
 2. Write `package.json` with the content below
 3. Run `pnpm install` to install dependencies
 4. Create `style.css` with the default column gap styles below
