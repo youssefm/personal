@@ -1,0 +1,35 @@
+{
+  "name": "Darkly",
+  "id": "darkly",
+  "type": "dark",
+  "author": "yms",
+  "description": "Superset theme matching the VS Code Darkly theme - dark backgrounds with pastel colors for readability",
+  "ui": {
+    "background": "#1d1f21",
+    "foreground": "#d1d5da",
+    "primary": "#79b8ff",
+    "accent": "#f9826c",
+    "border": "#161719"
+  },
+  "terminal": {
+    "background": "#191b1d",
+    "foreground": "#cccccc",
+    "cursor": "#79b8ff",
+    "black": "#000000",
+    "red": "#f2777a",
+    "green": "#99cc99",
+    "yellow": "#ffcc66",
+    "blue": "#6699cc",
+    "magenta": "#c081c0",
+    "cyan": "#66cccc",
+    "white": "#ffffff",
+    "brightBlack": "#000000",
+    "brightRed": "#f2777a",
+    "brightGreen": "#99cc99",
+    "brightYellow": "#ffcc66",
+    "brightBlue": "#6699cc",
+    "brightMagenta": "#c081c0",
+    "brightCyan": "#66cccc",
+    "brightWhite": "#ffffff"
+  }
+}
