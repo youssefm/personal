@@ -326,7 +326,7 @@ const result = compute();
 Wrap content in `<v-click>` to reveal on click:
 
 ```html
-<v-click> - This appears on click </v-click>
+<v-click>This appears on click</v-click>
 ```
 
 Or as a directive on any element:
@@ -340,18 +340,60 @@ Or as a directive on any element:
 Wraps each direct child so they appear one by one on successive clicks:
 
 ```html
-<v-clicks> - First - Second - Third </v-clicks>
+<v-clicks>
+
+- First
+- Second
+- Third
+
+</v-clicks>
 ```
 
 **Important:** There must be blank lines between `<v-clicks>` and the list items for Markdown to parse correctly.
 
-### v-click with Ordering
+### Preventing Premature Content Below v-clicks
+
+When a `<v-clicks>` block is followed by additional content on the same slide (blockquotes, code blocks, `<br>` separators, etc.), that content is **visible immediately** — even before the first click. This creates a jarring effect where bottom-of-slide content appears before the animated list above it.
+
+**Rule:** Any visible content placed *after* a `</v-clicks>` closing tag must be wrapped in `<v-click>` so it only appears after all list items have been revealed.
+
+✅ Correct:
 
 ```html
-<div v-click="3">Appears on click 3</div>
-<div v-click="1">Appears on click 1</div>
-<div v-click="2">Appears on click 2</div>
+<v-clicks>
+
+- First point
+- Second point
+- Third point
+
+</v-clicks>
+
+<v-click>
+
+<br>
+
+> A closing remark that only appears after the list
+
+</v-click>
 ```
+
+❌ Wrong — blockquote is visible before the list items animate in:
+
+```html
+<v-clicks>
+
+- First point
+- Second point
+- Third point
+
+</v-clicks>
+
+<br>
+
+> This appears immediately, spoiling the progressive reveal
+```
+
+This applies to **any** content after `</v-clicks>`: blockquotes, code blocks, paragraphs, images, and `<br>` spacers.
 
 ### v-click.hide (Hide on Click)
 
