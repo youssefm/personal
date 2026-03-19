@@ -19,8 +19,9 @@ All presentations live in `~/presentations/`. When the user asks for a presentat
 2. Write `package.json` with the content below
 3. Run `pnpm install` to install dependencies (run in foreground with a timeout of at least 120 seconds — initial installs can be slow)
 4. Create `style.css` with the default column gap styles below
-5. Write `slides.md` with the presentation content
-6. Tell the user to run `pnpm dev` to preview
+5. **Search for images** to enhance the presentation (see "Enhancing Slides with Images" below) — download them to `public/` before writing `slides.md`
+6. Write `slides.md` with the presentation content, incorporating the downloaded images
+7. Tell the user to run `pnpm dev` to preview
 
 ### package.json
 
@@ -42,7 +43,7 @@ All presentations live in `~/presentations/`. When the user asks for a presentat
     "playwright-chromium": "^1.52.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": ["esbuild", "playwright-chromium"]
   }
 }
 ```
@@ -555,11 +556,13 @@ PNG export outputs files to `./slides-export/` as `1.png`, `2.png`, etc.
 
 When creating a presentation, follow this structure:
 
-1. **Title slide** — `layout: center`, `class: text-center`, `hideInToc: true`. Theme declaration goes here.
+1. **Title slide** — `layout: center`, `class: text-center`, `hideInToc: true`. Theme declaration goes here. Consider using a background image.
 2. **Overview/Agenda** — `hideInToc: true`, uses `<Toc />` component.
-3. **Content slides** — One idea per slide. Use appropriate layouts. Mix prose and code slides as the narrative demands — use syntax highlighting and line highlighting to guide focus on code slides.
+3. **Content slides** — One idea per slide. Use appropriate layouts. Mix prose and code slides as the narrative demands — use syntax highlighting and line highlighting to guide focus on code slides. **Use `image-left` / `image-right` layouts** where a visual would reinforce the point.
 4. **Summary/takeaways** — `hideInToc: true`. Recap key points.
 5. **End slide** — `layout: center`, `class: text-center`, `hideInToc: true`. Thank you / Q&A.
+
+**Every presentation should include at least 2-3 images.** Search for them during step 5 of the Quick Start scaffold (before writing `slides.md`).
 
 ## Full Example
 
