@@ -344,7 +344,13 @@ Or as a directive on any element:
 Wraps each direct child so they appear one by one on successive clicks:
 
 ```html
-<v-clicks> - First - Second - Third </v-clicks>
+<v-clicks>
+
+- First
+- Second
+- Third
+
+</v-clicks>
 ```
 
 **Important:** There must be blank lines between `<v-clicks>` and the list items for Markdown to parse correctly.
@@ -358,7 +364,13 @@ When a `<v-clicks>` block is followed by additional content on the same slide (b
 ✅ Correct:
 
 ```html
-<v-clicks> - First point - Second point - Third point </v-clicks>
+<v-clicks>
+
+- First point
+- Second point
+- Third point
+
+</v-clicks>
 
 <v-click>
   <br />
@@ -370,7 +382,13 @@ When a `<v-clicks>` block is followed by additional content on the same slide (b
 ❌ Wrong — blockquote is visible before the list items animate in:
 
 ```html
-<v-clicks> - First point - Second point - Third point </v-clicks>
+<v-clicks>
+
+- First point
+- Second point
+- Third point
+
+</v-clicks>
 
 <br />
 
