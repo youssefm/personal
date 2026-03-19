@@ -756,7 +756,11 @@ mkdir -p ./slides-export/resized && for f in ./slides-export/*.png; do sips -Z 1
 
 This scales each image down to a max dimension of 1200px (preserving aspect ratio), which is sufficient to catch layout issues without consuming excessive tokens.
 
-3. **Read each resized PNG image** from `./slides-export/resized/` using the `Read` tool to visually inspect it. Read images **one at a time** to avoid overflowing the context window. Check every slide for:
+3. **Read each resized PNG image** from `./slides-export/resized/` using the `Read` tool to visually inspect it.
+
+   **⚠️ CRITICAL: Read exactly ONE image per `Read` tool call.** Do NOT batch multiple images into a single response — even for small decks. Each image consumes significant context window tokens. Read one, inspect it, then read the next in a separate response. Violating this will overflow the context window and degrade output quality.
+
+   Check every slide for:
    - Content that extends beyond the slide boundary (cut off at the bottom or right edge)
    - Text or code blocks that overlap with other elements
    - Two-column slides where one side overflows while the other has space
