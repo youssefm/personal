@@ -17,7 +17,7 @@ All presentations live in `~/presentations/`. When the user asks for a presentat
 
 1. Create the directory at `~/presentations/<kebab-case-name>/`
 2. Write `package.json` with the content below
-3. Run `pnpm install` to install dependencies
+3. Run `pnpm install` to install dependencies (run in foreground with a timeout of at least 120 seconds — initial installs can be slow)
 4. Create `style.css` with the default column gap styles below
 5. Write `slides.md` with the presentation content
 6. Tell the user to run `pnpm dev` to preview
@@ -549,7 +549,7 @@ slidev export --timeout 60000        # Increase timeout for large decks
 
 **Important:** By default, export renders each slide in its **final state** (all v-click animations resolved). Do NOT use `--with-clicks` — it creates extra pages for intermediate click states, which we don't need.
 
-PNG export outputs files to `./slides-export/` as `001.png`, `002.png`, etc.
+PNG export outputs files to `./slides-export/` as `1.png`, `2.png`, etc.
 
 ## Presentation Structure Template
 
@@ -725,9 +725,9 @@ pnpm add -D playwright-chromium
 cd /path/to/presentation && pnpm exec slidev export --format png --timeout 60000
 ```
 
-This creates `./slides-export/` with one PNG per slide (`001.png`, `002.png`, etc.), each rendered in its **final state** with all v-click animations resolved.
+This creates `./slides-export/` with one PNG per slide (`1.png`, `2.png`, etc.), each rendered in its **final state** with all v-click animations resolved.
 
-2. **Read each PNG image** using the `Read` tool to visually inspect it. Check every slide for:
+2. **Read each PNG image** using the `Read` tool to visually inspect it. Read images **one at a time** to avoid overflowing the context window. For small decks (≤5 slides), reading 2-3 at once is fine, but for larger decks always go one by one. Check every slide for:
    - Content that extends beyond the slide boundary (cut off at the bottom or right edge)
    - Text or code blocks that overlap with other elements
    - Two-column slides where one side overflows while the other has space
