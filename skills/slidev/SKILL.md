@@ -31,12 +31,15 @@ All presentations live in `~/presentations/`. When the user asks for a presentat
   "scripts": {
     "dev": "slidev --open",
     "build": "slidev build",
-    "export": "slidev export"
+    "export": "slidev export --format png"
   },
   "dependencies": {
     "@slidev/cli": "^52.12.0",
     "slidev-theme-nord": "^0.0.6",
     "vue": "^3.5.27"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.52.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": ["esbuild"]
@@ -554,17 +557,19 @@ Slidev includes UnoCSS (Tailwind-compatible). Common utilities for slides:
 
 ## Exporting
 
-Requires: `pnpm add -D playwright-chromium`
-
 ```bash
+slidev export --format png           # PNG images (one per slide, final state)
 slidev export                        # PDF
 slidev export --format pptx          # PowerPoint
-slidev export --format png           # PNG images
-slidev export --with-clicks          # Include click steps as separate pages
 slidev export --dark                 # Force dark theme
 slidev export --range 1,3-5          # Export specific slides
 slidev export --with-toc             # PDF with outline/bookmarks
+slidev export --timeout 60000        # Increase timeout for large decks
 ```
+
+**Important:** By default, export renders each slide in its **final state** (all v-click animations resolved). Do NOT use `--with-clicks` — it creates extra pages for intermediate click states, which we don't need.
+
+PNG export outputs files to `./slides-export/` as `001.png`, `002.png`, etc.
 
 ## Presentation Structure Template
 
@@ -720,64 +725,61 @@ Slidev renders to a fixed canvas of **980x551px** (16:9). Content that exceeds t
 
 It is always better to have two clean slides than one crammed slide. Use section headings like "Feature X (1/2)" and "Feature X (2/2)" or simply continue the narrative across slides.
 
-## Visual Verification with Playwright
+## Visual Verification via PNG Export
 
-After writing `slides.md`, you MUST visually verify that slides render correctly. Use the Playwright MCP tools to check for overflow/overlap.
+After writing `slides.md`, you MUST visually verify that slides render correctly. Export to PNG and inspect each slide image for overflow/overlap.
+
+### Prerequisites
+
+The project must have `playwright-chromium` installed (included in the package.json template above). For existing projects, add it if missing:
+
+```bash
+pnpm add -D playwright-chromium
+```
 
 ### Procedure
 
-1. **Start the dev server** in the background (skip if already running):
+1. **Export slides to PNG** from the project directory:
 
 ```bash
-cd /path/to/presentation && (tail -f /dev/null | npx slidev --port 3030 2>&1) &
-# Wait for server to be ready
-for i in $(seq 1 15); do
-  lsof -ti:3030 >/dev/null 2>&1 && break
-  sleep 1
-done
+cd /path/to/presentation && pnpm exec slidev export --format png --timeout 60000
 ```
 
-**Important:** Slidev requires an open stdin to stay alive (it reads keyboard shortcuts). Using `pnpm dev &` or `nohup` will cause the server to exit immediately. Always pipe `tail -f /dev/null` to keep stdin open as shown above.
+This creates `./slides-export/` with one PNG per slide (`001.png`, `002.png`, etc.), each rendered in its **final state** with all v-click animations resolved.
 
-2. **Wait for the server** to be ready, then use Playwright to open the **slide overview**:
-   - Use `browser_navigate` to go to `http://localhost:3030/1`
-   - Use `browser_resize` to set the viewport to `width: 900, height: 600` — this keeps screenshots small to conserve context
-   - Use `browser_press_key` to press `o` — this opens the overview grid showing ALL slides
-   - Use `browser_take_screenshot` to capture the full overview
+2. **Read each PNG image** using the `Read` tool to visually inspect it. Check every slide for:
+   - Content that extends beyond the slide boundary (cut off at the bottom or right edge)
+   - Text or code blocks that overlap with other elements
+   - Two-column slides where one side overflows while the other has space
+   - Code blocks with lines truncated or wrapping awkwardly
+   - Mermaid diagrams that bleed outside the slide frame
 
-3. **Scroll through the entire overview.** For presentations with many slides (20+), the overview grid doesn't fit in one viewport. Use `browser_run_code` with `page.mouse.wheel(0, 800)` to scroll down, taking screenshots at each position until you've seen all slides.
-
-4. **Inspect the overview screenshots.** In the grid, overflow and layout problems are easy to spot:
-   - Slides where content visibly extends beyond the slide boundary
-   - Slides that look significantly more "packed" than their neighbors
-   - Two-column slides where one side is much taller than the other
-   - Code blocks or diagrams that bleed outside the slide frame
-
-5. **For any slide that looks problematic**, navigate directly to it with all v-clicks revealed:
-   - Use `browser_navigate` to `http://localhost:3030/<slide-number>?clicks=99` (e.g., `/3?clicks=99`) — the `clicks=99` query param advances all animations to show the slide's **fully-revealed final state**
-   - Use `browser_take_screenshot` to confirm the issue
-   - Fix it in `slides.md`, then re-check
-
-   **Note:** The overview grid shows slides in their fully-revealed final state (all v-clicks resolved), so it's reliable for spotting overflow. Use `?clicks=99` when navigating to individual slides to match this behavior.
-
-6. **Efficient verification strategy:** Don't check every slide individually. Use the overview to identify suspicious slides (packed-looking, dense code, lots of content), then drill into only those with `?clicks=99`. Focus on:
-   - Slides with `<v-clicks>` wrapping 5+ items
+3. **Focus extra attention on high-risk slides:**
+   - Slides with `<v-clicks>` wrapping 5+ items (all items visible in final state)
    - Slides combining heading + code block + explanatory text after the code
-   - Two-column slides with code blocks (code may be truncated)
+   - Two-column slides with code blocks (code may be truncated at ~40 chars)
    - Slides with two code blocks (e.g., showing two strategies)
    - Slides with tables + additional text below
 
-7. **Common fixes:**
+4. **Fix any issues** in `slides.md`, then re-export and re-check the affected slides:
+
+```bash
+pnpm exec slidev export --format png --timeout 60000 --range <slide-numbers>
+```
+
+Use `--range` to re-export only the slides you fixed (e.g., `--range 3,7-9`).
+
+5. **Common fixes:**
    - Split content across multiple slides
    - Reduce bullet count or shorten text
    - Add `{max-height:"100%"}` to long code blocks
    - Add `{scale: 0.7}` to Mermaid diagrams
    - Switch layout (e.g., `default` instead of `center` for more space)
 
-8. **Kill the dev server** when done:
+6. **Clean up** the export directory when done:
 
 ```bash
-kill %1 2>/dev/null; kill $(lsof -ti:3030) 2>/dev/null
+rm -rf ./slides-export
 ```
 
 ## Tips for Professional Slides
