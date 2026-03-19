@@ -343,13 +343,7 @@ Or as a directive on any element:
 Wraps each direct child so they appear one by one on successive clicks:
 
 ```html
-<v-clicks>
-
-- First
-- Second
-- Third
-
-</v-clicks>
+<v-clicks> - First - Second - Third </v-clicks>
 ```
 
 **Important:** There must be blank lines between `<v-clicks>` and the list items for Markdown to parse correctly.
@@ -358,40 +352,26 @@ Wraps each direct child so they appear one by one on successive clicks:
 
 When a `<v-clicks>` block is followed by additional content on the same slide (blockquotes, code blocks, `<br>` separators, etc.), that content is **visible immediately** — even before the first click. This creates a jarring effect where bottom-of-slide content appears before the animated list above it.
 
-**Rule:** Any visible content placed *after* a `</v-clicks>` closing tag must be wrapped in `<v-click>` so it only appears after all list items have been revealed.
+**Rule:** Any visible content placed _after_ a `</v-clicks>` closing tag must be wrapped in `<v-click>` so it only appears after all list items have been revealed.
 
 ✅ Correct:
 
 ```html
-<v-clicks>
-
-- First point
-- Second point
-- Third point
-
-</v-clicks>
+<v-clicks> - First point - Second point - Third point </v-clicks>
 
 <v-click>
+  <br />
 
-<br>
-
-> A closing remark that only appears after the list
-
+  > A closing remark that only appears after the list
 </v-click>
 ```
 
 ❌ Wrong — blockquote is visible before the list items animate in:
 
 ```html
-<v-clicks>
+<v-clicks> - First point - Second point - Third point </v-clicks>
 
-- First point
-- Second point
-- Third point
-
-</v-clicks>
-
-<br>
+<br />
 
 > This appears immediately, spoiling the progressive reveal
 ```
@@ -781,6 +761,74 @@ Use `--range` to re-export only the slides you fixed (e.g., `--range 3,7-9`).
 ```bash
 rm -rf ./slides-export
 ```
+
+## Enhancing Slides with Images
+
+Presentations with visuals are far more engaging than text-only decks. When creating slides, **actively search the web for relevant images** to illustrate concepts, break up text-heavy sections, and add visual interest.
+
+### When to Search for Images
+
+- **Title/cover slides** — find a hero image that sets the tone for the talk
+- **Concept slides** — diagrams, illustrations, or photos that reinforce the idea
+- **Architecture/system slides** — when a Mermaid diagram isn't the best fit, look for existing visuals
+- **Section dividers** — a relevant background image makes transitions feel polished
+- **Comparison slides** — product logos, screenshots, or icons for the things being compared
+
+### How to Find Images
+
+Use the `WebSearch` tool to find images. Good search strategies:
+
+- `"<topic> illustration transparent png"` — for clean graphics
+- `"<topic> diagram"` — for technical/architectural visuals
+- `"<topic> icon svg"` — for simple iconography
+- `"<topic> unsplash"` or `"<topic> pexels"` — for high-quality royalty-free photos
+- `"<technology> logo png"` — for product/framework logos
+
+### Using Images in Slides
+
+1. **Download the image** to the presentation's `public/` directory:
+
+```bash
+curl -L -o public/image-name.png "https://example.com/image.png"
+```
+
+2. **Reference it in slides** with a leading `/` (Slidev serves `public/` at the root):
+
+As an image layout (full or split):
+
+    ---
+    layout: image-right
+    image: /architecture.png
+    ---
+
+    # System Architecture
+
+    The system uses a microservices pattern...
+
+As an inline image within a slide:
+
+```markdown
+# How It Works
+
+![Diagram showing the request flow](/request-flow.png)
+```
+
+As a background image:
+
+    ---
+    background: /hero-bg.jpg
+    class: text-center
+    ---
+
+    # Welcome
+
+### Guidelines
+
+- **Don't overdo it.** Not every slide needs an image — code slides and bullet slides are fine on their own.
+- **Prefer simple, clean visuals** that reinforce your message over decorative stock photos.
+- **Check image dimensions.** Very large images slow down export. Resize to reasonable dimensions (e.g., 1920px wide max).
+- **Use `image-left` / `image-right` layouts** to pair an image with explanatory text — this is one of the most effective slide formats.
+- **Always search proactively.** When building a presentation, look for at least 2-3 good images to include. The difference between a text-only deck and one with a few well-chosen visuals is dramatic.
 
 ## Tips for Professional Slides
 
