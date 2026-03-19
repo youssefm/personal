@@ -748,36 +748,48 @@ cd /path/to/presentation && pnpm exec slidev export --format png --timeout 60000
 
 This creates `./slides-export/` with one PNG per slide (`1.png`, `2.png`, etc.), each rendered in its **final state** with all v-click animations resolved.
 
-2. **Read each PNG image** using the `Read` tool to visually inspect it. Read images **one at a time** to avoid overflowing the context window. For small decks (≤5 slides), reading 2-3 at once is fine, but for larger decks always go one by one. Check every slide for:
+2. **Resize exported PNGs** to reduce context window usage while keeping enough detail for visual inspection:
+
+```bash
+mkdir -p ./slides-export/resized && for f in ./slides-export/*.png; do sips -Z 1200 "$f" --out "./slides-export/resized/$(basename "$f")"; done
+```
+
+This scales each image down to a max dimension of 1200px (preserving aspect ratio), which is sufficient to catch layout issues without consuming excessive tokens.
+
+3. **Read each resized PNG image** from `./slides-export/resized/` using the `Read` tool to visually inspect it. Read images **one at a time** to avoid overflowing the context window. For small decks (≤5 slides), reading 2-3 at once is fine, but for larger decks always go one by one. Check every slide for:
    - Content that extends beyond the slide boundary (cut off at the bottom or right edge)
    - Text or code blocks that overlap with other elements
    - Two-column slides where one side overflows while the other has space
    - Code blocks with lines truncated or wrapping awkwardly
    - Mermaid diagrams that bleed outside the slide frame
 
-3. **Focus extra attention on high-risk slides:**
+4. **Focus extra attention on high-risk slides:**
    - Slides with `<v-clicks>` wrapping 5+ items (all items visible in final state)
    - Slides combining heading + code block + explanatory text after the code
    - Two-column slides with code blocks (code may be truncated at ~40 chars)
    - Slides with two code blocks (e.g., showing two strategies)
    - Slides with tables + additional text below
 
-4. **Fix any issues** in `slides.md`, then re-export and re-check the affected slides:
+5. **Fix any issues** in `slides.md`, then re-export and re-check the affected slides:
 
 ```bash
 pnpm exec slidev export --format png --timeout 60000 --range <slide-numbers>
 ```
 
-Use `--range` to re-export only the slides you fixed (e.g., `--range 3,7-9`).
+Use `--range` to re-export only the slides you fixed (e.g., `--range 3,7-9`). Re-run the resize step on the new exports before reading:
 
-5. **Common fixes:**
+```bash
+for f in ./slides-export/*.png; do sips -Z 1200 "$f" --out "./slides-export/resized/$(basename "$f")"; done
+```
+
+6. **Common fixes:**
    - Split content across multiple slides
    - Reduce bullet count or shorten text
    - Add `{max-height:"100%"}` to long code blocks
    - Add `{scale: 0.7}` to Mermaid diagrams
    - Switch layout (e.g., `default` instead of `center` for more space)
 
-6. **Clean up** the export directory when done:
+7. **Clean up** the export directory when done:
 
 ```bash
 rm -rf ./slides-export
